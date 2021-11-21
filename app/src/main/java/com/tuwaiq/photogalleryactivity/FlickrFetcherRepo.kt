@@ -39,15 +39,13 @@ class FlickrFetcherRepo {
         val photoResponse = flickrResponse.awaitResponse()
 
         var galleryItems:List<GalleryItem>? = listOf<GalleryItem>()
+
       if (photoResponse.isSuccessful) {
-
-
           val photo = photoResponse.body()?.photos
 
           galleryItems = photo?.galleryItems?.filterNot { galleryItem ->
               galleryItem.url.isBlank()
           }
-
       }else{
           Log.e(TAG, "ohhhh ${photoResponse.errorBody()}")
       }
